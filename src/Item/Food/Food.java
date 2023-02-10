@@ -2,6 +2,8 @@ package Item.Food;
 
 import Item.IConsumable;
 
+import Character.Character;
+
 public abstract class Food implements IConsumable{
 
     double power;
@@ -14,12 +16,12 @@ public abstract class Food implements IConsumable{
         return power;
     }
 
-    @Override
     public void consumedBy(Character character) {
 
-        if(character.){
+        if (character.isDead()){
 
-        }else {
+        } else {
 
         }
+    }
 }
