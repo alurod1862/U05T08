@@ -5,12 +5,14 @@ import Character.Job.Knight;
 import Character.Race.Human;
 import Character.Race.Race;
 import Character.Stat.*;
+import Item.Food.*;
+import Item.Potion.Healing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterTest {
-
+    //Test para Job,Stat,Race,Food,Potion
     @Test
     void test() {
         String name = "Rodolfo";
@@ -23,6 +25,8 @@ class CharacterTest {
         Dexterity dexterity = new Dexterity(5);
         Costitution costitution = new Costitution(5);
         int health = 225;
+        Apple apple = new Apple(10);
+        Healing healing = new Healing(50);
         Character character = new Character(name,race,job,strength,intelligence,dexterity,costitution,health);
         assertEquals("Rodolfo",character.getName());
         assertEquals(race,character.getRace());
@@ -36,8 +40,15 @@ class CharacterTest {
         assertEquals(225,character.maxHealth());
         assertEquals(225,character.health());
         assertEquals(false,character.isDead());
-        assertEquals("Rodolfo received 10.0 damage. Healtl: 215.0/225.0",character.receiveDamage(10));
-        assertEquals("Rodolfo healed 5.0 life .Healtl: 220.0/225.0",character.heals(5));
+        assertEquals("Rodolfo received 10 damage. Healtl: 215/225.0",character.receiveDamage(10));
+        assertEquals("Rodolfo healed 5 life .Healtl: 220/225.0",character.heals(5));
+        assertEquals("Rodolfo consumed: Apple",character.consumes(apple));
+        assertEquals(10,apple.getPower());
+        assertEquals("Rodolfo healed 10 life .Healtl: 230/225.0",character.cure(10));
+        assertEquals("Rodolfo consumed: Healing Potion",character.consumesPotion(healing));
+        assertEquals(50,healing.getPower());
+        assertEquals("Rodolfo healed 50 life .Healtl: 280/225.0",character.cure(50));
+
     }
 
 

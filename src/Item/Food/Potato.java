@@ -1,9 +1,9 @@
 package Item.Food;
 
-public class Chicken extends Food{
+public class Potato extends Food{
 
 
-    public Chicken(int power){
+    public Potato(int power){
         super(power);
     }
 
@@ -11,4 +11,6 @@ public class Chicken extends Food{
     public void consumedBy(Character character) {
 
     }
+
+
 }

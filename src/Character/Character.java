@@ -5,6 +5,11 @@ import Character.Race.Race;
 import Character.Stat.*;
 import Item.IConsumable;
 
+
+/**
+ * @author Iker Rodriguez Montava
+ */
+
 public class Character implements IDamageable {
 
     public String name;
@@ -14,10 +19,10 @@ public class Character implements IDamageable {
     public Intelligence intelligence;
     public Dexterity dexterity;
     public Costitution costitution;
-    public double health;
+    public int health;
 
 
-    public Character(String name, Race race, Job job, Strength strength, Intelligence intelligence, Dexterity dexterity,Costitution costitution,double health) {
+    public Character(String name, Race race, Job job, Strength strength, Intelligence intelligence, Dexterity dexterity,Costitution costitution,int health) {
         this.name = name;
         this.race = race;
         this.job = job;
@@ -74,8 +79,11 @@ public class Character implements IDamageable {
 
     @Override
     public String toString(){
-        return "My name: " + name + " I'am an " +  getRace() +" "+ getJob() + " My stats are: Power: " + strength.getValue() + " Dexterity: " + dexterity.getValue() + " Intelligence: " + intelligence.getValue() + " Costitucion: " + costitution.getValue()
+
+        String salida = "My name: " + name + " I'am an " +  getRace() +" "+ getJob() + " My stats are: Power: " + strength.getValue() + " Dexterity: " + dexterity.getValue() + " Intelligence: " + intelligence.getValue() + " Costitucion: " + costitution.getValue()
                 + " My velocity is: " + velocity(getDexterity()) + " My power is: " + power(getStrength()) + " My magic is: " + magic(getIntelligence()) + " My Health " + getHealth();
+        System.out.println(salida);
+        return salida;
     }
     @Override
     public double maxHealth() {
@@ -97,30 +105,41 @@ public class Character implements IDamageable {
     }
 
     @Override
-    public String receiveDamage(double amount) {
+    public String receiveDamage(int amount) {
         String salida = getName() + " received " + amount + " damage" + ". Healtl: " + (health-amount) +"/"+ maxHealth();
-        health = (health-amount);
+        health = health-amount;
         System.out.println(salida);
         return salida;
     }
 
     @Override
-    public String heals(double amount) {
+    public String heals(int amount) {
         String salida = getName() + " healed " + amount + " life " + ".Healtl: " + (health+amount) +"/"+ maxHealth();
         System.out.println(salida);
+        health = health+amount;
         return salida;
     }
 
 
-    //Paso 27
-    public void consumes(IConsumable consumable){
-
-
-
+    public String consumes(IConsumable consumable) {
+        String salida = this.name + " consumed: " + consumable.getClass().getSimpleName();
+        System.out.println(salida);
+        return salida;
     }
 
+    public String consumesPotion(IConsumable consumable) {
+        String salida = this.name + " consumed: " + consumable.getClass().getSimpleName() + " Potion";
+        System.out.println(salida);
+        return salida;
+    }
 
-
+    @Override
+    public String cure(int amount) {
+        String salida = getName() + " healed " + amount + " life " + ".Healtl: " + (health+amount) +"/"+ maxHealth();
+        System.out.println(salida);
+        health = health+amount;
+        return salida;
+    }
 
 
 }

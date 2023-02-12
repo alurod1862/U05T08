@@ -9,9 +9,11 @@ public interface IDamageable {
 
     boolean isDead();
 
-    String receiveDamage(double amount);
+    String receiveDamage(int amount);
 
-    String heals(double amount);
+    String heals(int amount);
+
+    String cure(int amount);
 
 
 

@@ -1,14 +1,15 @@
-package Item.Food;
+package Item.Potion;
 
-public class Chicken extends Food{
+public class Greater extends Potion {
 
-
-    public Chicken(int power){
+    public Greater(int power){
         super(power);
     }
+
 
     @Override
     public void consumedBy(Character character) {
 
     }
+
 }
